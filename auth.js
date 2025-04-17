@@ -1,49 +1,118 @@
-// Check if Firebase is available
-if (typeof firebase === 'undefined') {
-    console.error('Firebase is not loaded!');
-    alert('Error: Firebase is not loaded. Please check your internet connection.');
-} else {
-    console.log('Firebase is loaded successfully');
-}
-
-// Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyBrVtHa3g_JFOAu1h-qxgF044xEnZp1Dgs",
-    authDomain: "amara-dc314.firebaseapp.com",
-    projectId: "amara-dc314",
-    storageBucket: "amara-dc314.firebasestorage.app",
-    messagingSenderId: "503583062374",
-    appId: "1:503583062374:web:3a0467f5a0fab519c170a7",
-    measurementId: "G-74XV2BFE9S"
-  };
-  
-
-try {
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    console.log('Firebase initialized successfully');
-} catch (error) {
-    console.error('Firebase initialization error:', error);
-    alert('Error initializing Firebase: ' + error.message);
-}
-
+// Get Firebase auth instance
 const auth = firebase.auth();
-const db = firebase.firestore();
 
 // DOM Elements
 const loginForm = document.getElementById('loginForm');
 const registerForm = document.getElementById('registerForm');
 const loaderContainer = document.querySelector('.loader-container');
 
-// Show loader
+// Show/Hide loader
 function showLoader() {
-    loaderContainer.style.display = 'flex';
+    if (loaderContainer) loaderContainer.style.display = 'flex';
 }
 
-// Hide loader
 function hideLoader() {
-    loaderContainer.style.display = 'none';
+    if (loaderContainer) loaderContainer.style.display = 'none';
 }
+
+// Handle login form
+if (loginForm) {
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        showLoader();
+
+        const email = document.getElementById('loginIdentifier').value;
+        const password = document.getElementById('password').value;
+
+        try {
+            await auth.signInWithEmailAndPassword(email, password);
+            window.location.href = 'index.html';
+        } catch (error) {
+            console.error('Login error:', error);
+            alert('Login failed: ' + error.message);
+        } finally {
+            hideLoader();
+        }
+    });
+}
+
+// Handle register form
+if (registerForm) {
+    registerForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        showLoader();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+
+        try {
+            const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+            
+            // Add user details to Firestore
+            await firebase.firestore().collection('users').doc(userCredential.user.uid).set({
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                createdAt: new Date()
+            });
+
+            window.location.href = 'index.html';
+        } catch (error) {
+            console.error('Registration error:', error);
+            alert('Registration failed: ' + error.message);
+        } finally {
+            hideLoader();
+        }
+    });
+}
+
+// Update UI based on auth state
+auth.onAuthStateChanged((user) => {
+    const authButtons = document.querySelector('.auth-buttons');
+    if (!authButtons) return;
+
+    if (user) {
+        // Get user data from Firestore to display full name
+        db.collection('users').doc(user.uid).get()
+            .then((doc) => {
+                if (doc.exists) {
+                    const userData = doc.data();
+                    const fullName = `${userData.firstName} ${userData.lastName}`;
+                    authButtons.innerHTML = `
+                        <div class="user-profile">
+                            <span class="user-name">${fullName}</span>
+                            <button class="logout-btn" onclick="handleLogout()">Logout</button>
+                        </div>
+                    `;
+                }
+            })
+            .catch((error) => {
+                console.error("Error getting user data:", error);
+            });
+    } else {
+        authButtons.innerHTML = `
+            <a href="login.html" class="login-btn">Login</a>
+            <a href="register.html" class="signup-btn">Sign up</a>
+        `;
+    }
+});
+
+// Handle logout
+function handleLogout() {
+    auth.signOut()
+        .then(() => {
+            window.location.href = 'index.html';
+        })
+        .catch((error) => {
+            console.error('Logout error:', error);
+            alert('Logout failed: ' + error.message);
+        });
+}
+
+// Get Firestore instance
+const db = firebase.firestore();
 
 // Show error message
 function showError(element, message) {
@@ -79,7 +148,7 @@ function hideError(element) {
     element.style.borderColor = '#ddd';
 }
 
-// Validate password strength
+// Validate password
 function validatePassword(password) {
     const requirements = {
         length: password.length >= 8,
@@ -91,206 +160,47 @@ function validatePassword(password) {
     return Object.values(requirements).every(Boolean);
 }
 
-// Update auth UI based on user state
-function updateAuthUI(user) {
-    const authButtons = document.querySelector('.auth-buttons');
-    if (!authButtons) return;
+// Update password requirements UI
+function updatePasswordRequirements(password) {
+    const requirements = {
+        length: password.length >= 8,
+        uppercase: /[A-Z]/.test(password),
+        lowercase: /[a-z]/.test(password),
+        number: /[0-9]/.test(password),
+        special: /[!@#$%^&*]/.test(password)
+    };
 
-    if (user) {
-        // User is signed in
-        const displayName = user.displayName || user.email || 'User';
-        authButtons.innerHTML = `
-            <div class="user-profile">
-                <span class="user-name">${displayName}</span>
-                <button class="logout-btn" onclick="handleLogout()">Logout</button>
-            </div>
-        `;
-    } else {
-        // User is signed out
-        authButtons.innerHTML = `
-            <a href="login.html" class="login-btn">Login</a>
-            <a href="register.html" class="signup-btn">Sign up</a>
-        `;
-    }
-}
-
-// Handle logout
-async function handleLogout() {
-    try {
-        await auth.signOut();
-        window.location.href = 'index.html';
-    } catch (error) {
-        console.error('Logout error:', error);
-        alert('Error during logout: ' + error.message);
-    }
-}
-
-// Check auth state
-auth.onAuthStateChanged((user) => {
-    updateAuthUI(user);
-});
-
-// Login form submission
-if (loginForm) {
-    loginForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        showLoader();
-
-        const identifier = document.getElementById('loginIdentifier').value;
-        const password = document.getElementById('password').value;
-
-        try {
-            // Check if identifier is email or phone
-            const isEmail = identifier.includes('@');
-            let userCredential;
-
-            if (isEmail) {
-                userCredential = await auth.signInWithEmailAndPassword(identifier, password);
-            } else {
-                // Handle phone number login if needed
-                throw new Error('Phone number login not implemented yet');
-            }
-
-            // Update UI and redirect
-            updateAuthUI(userCredential.user);
-            window.location.href = 'index.html';
-        } catch (error) {
-            console.error('Login error:', error);
-            showError(document.getElementById('loginIdentifier'), 'Invalid credentials');
-        } finally {
-            hideLoader();
+    Object.entries(requirements).forEach(([key, isValid]) => {
+        const requirementElement = document.querySelector(`[data-requirement="${key}"]`);
+        if (requirementElement) {
+            requirementElement.classList.toggle('valid', isValid);
         }
     });
 }
 
-// Register form submission
-if (registerForm) {
-    registerForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        showLoader();
-
-        const email = document.getElementById('email');
-        const phone = document.getElementById('phone');
-        const password = document.getElementById('password');
-        const confirmPassword = document.getElementById('confirmPassword');
-        const terms = document.getElementById('terms');
-
-        // Clear previous errors
-        [email, phone, password, confirmPassword, terms].forEach(hideError);
-
-        // Validate email
-        if (!email.value.trim()) {
-            showError(email, 'Email is required');
-            hideLoader();
-            return;
-        }
-
-        if (!isValidEmail(email.value)) {
-            showError(email, 'Please enter a valid email address');
-            hideLoader();
-            return;
-        }
-
-        // Validate phone
-        if (!phone.value.trim()) {
-            showError(phone, 'Phone number is required');
-            hideLoader();
-            return;
-        }
-
-        // Validate password
-        if (!password.value.trim()) {
-            showError(password, 'Password is required');
-            hideLoader();
-            return;
-        }
-
-        if (!validatePassword(password.value)) {
-            showError(password, 'Password does not meet requirements');
-            hideLoader();
-            return;
-        }
-
-        // Check password match
-        if (password.value !== confirmPassword.value) {
-            showError(confirmPassword, 'Passwords do not match');
-            hideLoader();
-            return;
-        }
-
-        // Validate terms
-        if (!terms.checked) {
-            const termsError = document.querySelector('.terms-error');
-            termsError.style.display = 'block';
-            hideLoader();
-            return;
-        }
-
-        try {
-            // Create user with email
-            const userCredential = await auth.createUserWithEmailAndPassword(email.value, password.value);
-            
-            // Store additional user data in Firestore
-            await db.collection('users').doc(userCredential.user.uid).set({
-                email: email.value,
-                phone: phone.value,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            });
-
-            // Update UI and redirect
-            updateAuthUI(userCredential.user);
-            window.location.href = 'index.html';
-        } catch (error) {
-            console.error('Registration error:', error);
-            if (error.code === 'auth/email-already-in-use') {
-                showError(email, 'This email is already registered');
-            } else if (error.code === 'auth/invalid-email') {
-                showError(email, 'Invalid email address');
-            } else if (error.code === 'auth/weak-password') {
-                showError(password, 'Password is too weak');
-            } else {
-                showError(email, error.message);
-            }
-        } finally {
-            hideLoader();
-        }
-    });
-
-    // Hide terms error when checkbox is checked
-    document.getElementById('terms').addEventListener('change', function() {
-        const termsError = document.querySelector('.terms-error');
-        termsError.style.display = this.checked ? 'none' : 'block';
-    });
-
-    // Add real-time validation for password
+// Add password input event listener
+document.addEventListener('DOMContentLoaded', function() {
     const passwordInput = document.getElementById('password');
     if (passwordInput) {
         passwordInput.addEventListener('input', function() {
-            if (this.value.trim()) {
-                if (!validatePassword(this.value)) {
-                    showError(this, 'Password does not meet requirements');
-                } else {
-                    hideError(this);
-                }
-            } else {
-                hideError(this);
-            }
+            updatePasswordRequirements(this.value);
         });
     }
+});
 
-    // Add real-time validation for confirm password
-    const confirmPasswordInput = document.getElementById('confirmPassword');
-    if (confirmPasswordInput) {
-        confirmPasswordInput.addEventListener('input', function() {
-            const password = document.getElementById('password').value;
-            if (this.value.trim() && this.value !== password) {
-                showError(this, 'Passwords do not match');
-            } else {
-                hideError(this);
-            }
+// Handle country selection
+document.addEventListener('DOMContentLoaded', function() {
+    const countrySelect = document.getElementById('country');
+    const phoneCodeInput = document.getElementById('phoneCode');
+    
+    if (countrySelect && phoneCodeInput) {
+        countrySelect.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            const phoneCode = selectedOption.getAttribute('data-code');
+            phoneCodeInput.value = phoneCode;
         });
     }
-}
+});
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM loaded, initializing auth...');
@@ -397,36 +307,6 @@ async function handleLogin(form) {
     } catch (error) {
         console.error('Login error:', error);
         showError(form.querySelector('input[name="loginIdentifier"]'), error.message);
-    } finally {
-        setLoadingState(form, false);
-        hideLoader();
-    }
-}
-
-async function handleRegistration(form) {
-    console.log('handleRegistration called');
-    setLoadingState(form, true);
-    showLoader();
-    
-    const email = form.querySelector('input[name="email"]').value;
-    const password = form.querySelector('input[name="password"]').value;
-    const phone = form.querySelector('input[name="phone"]').value;
-    
-    try {
-        console.log('Attempting registration with:', { email });
-        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-        
-        await db.collection('users').doc(userCredential.user.uid).set({
-            email: email,
-            phone: phone,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        
-        console.log('Registration successful:', userCredential.user);
-        window.location.href = 'index.html';
-    } catch (error) {
-        console.error('Registration error:', error);
-        showError(form.querySelector('input[name="email"]'), error.message);
     } finally {
         setLoadingState(form, false);
         hideLoader();

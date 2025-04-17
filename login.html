@@ -5,20 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Amara</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="components.css">
     <link rel="stylesheet" href="auth.css">
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header>
         <nav class="navbar">
             <div class="nav-left">
-                <a href="#home" class="logo">AMARA</a>
+                <a href="index.html" class="logo">AMARA</a>
             </div>
             <div>
                 <ul class="nav-links">
-                    <li><a href="#shop">Shop</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#blog">Blog</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
                 </ul>
             </div>
             <div class="nav-right">
@@ -55,6 +59,37 @@
         </div>
     </main>
 
+    <footer class="footer">
+        <div class="footer-background">AMARA</div>
+        <div class="footer-content">
+            <div class="footer-left">
+                <a href="#" class="footer-logo">AMARA</a>
+                <nav class="footer-nav">
+                    <a href="#home">Home</a>
+                    <a href="#shop">Shop</a>
+                    <a href="#about">About</a>
+                    <a href="#blog">Blog</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
+            <div class="footer-subscribe">
+                <form class="footer-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+                <p>By subscribing you agree to with our <a href="#privacy">Privacy Policy</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-copyright">©2024 Aamara All rights reserved</div>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
     <!-- Loader -->
     <div class="loader-container">
         <div class="loader"></div>
@@ -64,6 +99,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
     <script src="auth.js"></script>
 </body>
 </html> 

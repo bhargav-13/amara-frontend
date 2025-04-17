@@ -5,20 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - Amara</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="components.css">
     <link rel="stylesheet" href="auth.css">
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header>
         <nav class="navbar">
             <div class="nav-left">
-                <a href="#home" class="logo">AMARA</a>
+                <a href="index.html" class="logo">AMARA</a>
             </div>
             <div>
                 <ul class="nav-links">
-                    <li><a href="#shop">Shop</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#blog">Blog</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
                 </ul>
             </div>
             <div class="nav-right">
@@ -36,14 +40,48 @@
             <p class="auth-subtitle">Join Amara today</p>
             
             <form class="auth-form" id="registerForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label for="email">Email Address</label>
                     <input type="email" id="email" name="email" required>
                 </div>
 
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" required>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <select id="country" name="country" required>
+                            <option value="">Select Country</option>
+                            <option value="US" data-code="+1">United States (+1)</option>
+                            <option value="GB" data-code="+44">United Kingdom (+44)</option>
+                            <option value="IN" data-code="+91">India (+91)</option>
+                            <option value="CA" data-code="+1">Canada (+1)</option>
+                            <option value="AU" data-code="+61">Australia (+61)</option>
+                            <option value="DE" data-code="+49">Germany (+49)</option>
+                            <option value="FR" data-code="+33">France (+33)</option>
+                            <option value="JP" data-code="+81">Japan (+81)</option>
+                            <option value="BR" data-code="+55">Brazil (+55)</option>
+                            <option value="CN" data-code="+86">China (+86)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <div class="phone-input-group">
+                            <input type="text" id="phoneCode" class="phone-code" readonly>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="form-group">
@@ -52,11 +90,11 @@
                     <div class="password-requirements">
                         <p>Password must contain:</p>
                         <ul>
-                            <li>At least 8 characters</li>
-                            <li>One uppercase letter</li>
-                            <li>One lowercase letter</li>
-                            <li>One number</li>
-                            <li>One special character</li>
+                            <li data-requirement="length">At least 8 characters</li>
+                            <li data-requirement="uppercase">One uppercase letter</li>
+                            <li data-requirement="lowercase">One lowercase letter</li>
+                            <li data-requirement="number">One number</li>
+                            <li data-requirement="special">One special character</li>
                         </ul>
                     </div>
                 </div>
@@ -71,7 +109,7 @@
                         <input type="checkbox" name="terms" id="terms" required>
                         <span>I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></span>
                     </label>
-                    <div class="terms-error" style="display: none; color: #ff4444; font-size: 0.9rem; margin-top: 0.5rem;">
+                    <div class="terms-error" style="display: none;">
                         You must agree to the terms and conditions
                     </div>
                 </div>
@@ -85,6 +123,37 @@
         </div>
     </main>
 
+    <footer class="footer">
+        <div class="footer-background">AMARA</div>
+        <div class="footer-content">
+            <div class="footer-left">
+                <a href="#" class="footer-logo">AMARA</a>
+                <nav class="footer-nav">
+                    <a href="#home">Home</a>
+                    <a href="#shop">Shop</a>
+                    <a href="#about">About</a>
+                    <a href="#blog">Blog</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
+            <div class="footer-subscribe">
+                <form class="footer-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+                <p>By subscribing you agree to with our <a href="#privacy">Privacy Policy</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-copyright">©2024 Aamara All rights reserved</div>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
     <!-- Loader -->
     <div class="loader-container">
         <div class="loader"></div>
@@ -94,6 +163,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
     <script src="auth.js"></script>
 </body>
 </html> 
