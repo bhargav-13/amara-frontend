@@ -6,7 +6,7 @@
     justify-content: center;
     padding: 2rem;
     margin-top: 87px;
-    background: linear-gradient(135deg, rgba(255, 240, 240, 0.2) 0%, rgba(255, 240, 240, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(255, 240, 240, 0.103) 0%, rgba(255, 240, 240, 0.1) 50%, rgba(255, 240, 240, 0.034) 100%);
     position: relative;
     overflow: hidden;
 }
@@ -21,7 +21,7 @@
     height: 200px;
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FFE5E5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>') no-repeat;
     background-size: contain;
-    opacity: 0.8;
+    opacity: 0.1;
     z-index: 0;
 }
 
@@ -34,7 +34,7 @@
     height: 200px;
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FFE5E5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>') no-repeat;
     background-size: contain;
-    opacity: 0.5;
+    opacity: 0.1;
     z-index: 0;
 }
 
@@ -65,14 +65,20 @@
     opacity: 0.8;
 }
 
-/* Form Styles */
+/* Form Layout */
 .auth-form {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
 
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+
 .form-group {
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -126,6 +132,9 @@
 .password-requirements ul {
     list-style: none;
     padding-left: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
 }
 
 .password-requirements li {
@@ -133,6 +142,20 @@
     font-size: 0.9rem;
     margin-bottom: 0.3rem;
     opacity: 0.8;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.password-requirements li::before {
+    content: '✕';
+    color: #ff4444;
+    font-size: 1rem;
+}
+
+.password-requirements li.valid::before {
+    content: '✓';
+    color: #4CAF50;
 }
 
 /* Terms Group */
@@ -241,6 +264,15 @@
 
     .auth-card h2 {
         font-size: 2rem;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .password-requirements ul {
+        grid-template-columns: 1fr;
     }
 }
 

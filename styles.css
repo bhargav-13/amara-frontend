@@ -872,6 +872,7 @@ body {
     display: flex;
     gap: 0.5rem;
     min-width: 400px;
+    background-color: var(--white);
 }
 
 .subscribe-form input {
@@ -948,6 +949,7 @@ body {
 
 /* Certification Section */
 .certification {
+    background-color: var(--white);
     padding: 4rem 0;
     margin-bottom: 0;
 }
