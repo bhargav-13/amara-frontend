@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - AMARA</title>
+    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="components.css">
+    <link rel="stylesheet" href="contact.css">
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-left">
+                <a href="index.html" class="logo">AMARA</a>
+            </div>
+            <div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <div class="auth-buttons">
+                    <a href="login.html" class="login-btn">Login</a>
+                    <a href="register.html" class="signup-btn">Sign up</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="contact-content">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h1>Get in Touch</h1>
+                <p class="contact-subtitle">We'd love to hear from you. Our team is always here to help!</p>
+                
+                <div class="info-cards">
+                    <div class="info-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Visit Us</h3>
+                        <p>123 Business Street<br>New York, NY 10001</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-phone-alt"></i>
+                        <h3>Call Us</h3>
+                        <p>+1 (555) 123-4567<br>Mon-Fri, 9am-6pm EST</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email Us</h3>
+                        <p>support@amara.com<br>sales@amara.com</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-section">
+                <div class="form-container">
+                    <h2>Send us a Message</h2>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" required>
+                            <label for="name">Your Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" required>
+                            <label for="email">Your Email</label>
+                        </div>
+                        <div class="form-group">
+                            <select id="subject" required>
+                                <option value="" disabled selected>Select Subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="support">Product Support</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="partnership">Partnership</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" rows="5" required></textarea>
+                            <label for="message">Your Message</label>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- WhatsApp Sticky Button -->
+        <a href="https://wa.me/1234567890" class="whatsapp-sticky" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+            <span class="tooltip">Chat with us!</span>
+        </a>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-background">AMARA</div>
+        <div class="footer-content">
+            <div class="footer-left">
+                <a href="#" class="footer-logo">AMARA</a>
+                <nav class="footer-nav">
+                    <a href="#home">Home</a>
+                    <a href="#shop">Shop</a>
+                    <a href="#about">About</a>
+                    <a href="#blog">Blog</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
+            <div class="footer-subscribe">
+                <form class="footer-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+                <p>By subscribing you agree to with our <a href="terms.html">Privacy Policy</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-copyright">©2024 Aamara All rights reserved</div>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="auth-state.js"></script>
+</body>
+</html> 

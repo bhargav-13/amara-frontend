@@ -340,12 +340,97 @@ body {
 
     .arch-container {
         margin-top: 2rem;
+        width: 100%;
+        max-width: 500px;
+        height: 600px;
+    }
+
+    .arch-outer {
+        width: 100%;
+        height: 100%;
+    }
+
+    .product-image {
+        width: 90%;
+        height: auto;
+    }
+
+    .features {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .features-grid {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .feature-left, .feature-right {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .feature-image {
+        width: 100%;
+        max-width: 500px;
+        margin: 2rem auto;
+    }
+
+    .feature-item {
+        width: 100%;
+        max-width: 500px;
+        padding: 0 1rem;
+        text-align: center;
+    }
+
+    .feature-item h4 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .feature-item p {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin: 0 auto;
+    }
+
+    .testimonials-grid {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .testimonial-card {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .testimonial-card:nth-child(2) {
+        transform: none;
+    }
+
+    .footer {
+        width: 100%;
+        padding: 3rem 2rem;
+    }
+
+    .footer-content {
+        max-width: 100%;
     }
 }
 
 @media (max-width: 768px) {
     .navbar {
-        padding: 1rem 1.5rem;
+        padding: 1rem;
     }
 
     .nav-left {
@@ -353,133 +438,154 @@ body {
     }
 
     .logo {
-        font-size: 1.75rem;
+        font-size: 2rem;
     }
 
     .nav-links {
-        position: fixed;
-        top: 70px;
-        left: 0;
-        right: 0;
-        background: var(--white);
-        padding: 1rem;
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
         display: none;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     .nav-links.active {
         display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--blush-rose);
+        padding: 1rem;
+        gap: 1rem;
     }
 
     .hero {
-        padding: 6rem 1.5rem 2rem;
-        text-align: center;
+        padding: 5rem 1rem 2rem;
     }
 
     .hero-content {
-        align-items: center;
+        width: 100%;
+        max-width: 100%;
+        padding: 0 1rem;
     }
 
     .hero-image {
         width: 100%;
-        display: flex;
-        justify-content: center;
+        max-width: 100%;
     }
 
     .arch-container {
-        width: 260px;
+        max-width: 300px;
         height: 400px;
-        margin: 0 auto;
     }
-    
+
     .arch-outer {
-        width: 100%;
-        height: 100%;
         padding: 10px;
     }
 
     .product-image {
-        width: 85%;
-        height: auto;
-        margin: 0 auto;
+        width: 80%;
     }
 
     .testimonial-card {
         width: 100%;
-        height: auto;
-        min-height: 350px;
-        padding: 2rem;
+        max-width: 100%;
+        margin: 1rem 0;
     }
 
     .testimonial-card:nth-child(2) {
-        width: 100%;
-        padding: 2rem;
+        transform: none;
     }
 
     .testimonial-card h4 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
+        font-size: 1.25rem;
     }
 
     .testimonial-card p {
         font-size: 1rem;
-        line-height: 1.6;
     }
 
     .footer {
-        padding: 3rem 1.5rem;
+        padding: 2rem 1rem;
     }
 
     .footer-nav {
-        grid-template-columns: repeat(2, auto);
-        gap: 1.5rem;
-        justify-content: center;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
     }
 
     .footer-form {
         flex-direction: column;
-        align-items: center;
         width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
     }
 
     .footer-form input {
         width: 100%;
-        max-width: 300px;
     }
 
     .footer-form button {
         width: 100%;
-        max-width: 300px;
     }
 
     .footer-background {
-        font-size: 6rem;
+        font-size: 10rem;
     }
 
     .footer-content {
+        flex-direction: column;
+        align-items: center;
         text-align: center;
+        gap: 2rem;
     }
 
     .footer-left {
-        width: 100%;
+        align-items: center;
     }
 
     .footer-subscribe {
         width: 100%;
-        text-align: center;
+        max-width: 300px;
     }
 
     .footer-subscribe p {
-        padding: 0 1rem;
+        font-size: 0.75rem;
+    }
+
+    .features {
+        padding: 3rem 1rem;
+    }
+
+    .feature-image {
+        max-width: 400px;
+    }
+
+    .feature-item {
+        max-width: 400px;
+    }
+
+    .feature-item h4 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .feature-item p {
+        font-size: 1rem;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .testimonials {
+        padding: 4rem 1rem;
+    }
+
+    .testimonial-card {
+        padding: 2rem;
     }
 }
 
 @media (max-width: 480px) {
     .navbar {
-        padding: 1rem;
+        padding: 0.5rem;
     }
 
     .logo {
@@ -491,28 +597,27 @@ body {
     }
 
     .login-btn, .signup-btn {
-        padding: 0.4rem 1rem;
-        font-size: 0.9rem;
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
     }
 
     .hero-content h1 {
         font-size: 2.5rem;
+        margin-left: 0;
     }
 
     .hero-content p {
-        font-size: 1rem;
-        padding: 0 1rem;
+        font-size: 1.125rem;
+        margin-left: 0;
     }
 
     .arch-container {
-        width: 220px;
-        height: 340px;
-    }
-    
-    .arch-outer {
-        width: 220px;
+        max-width: 250px;
         height: 350px;
-        padding: 10px;
+    }
+
+    .arch-outer {
+        padding: 8px;
     }
 
     .testimonial-card {
@@ -520,11 +625,11 @@ body {
     }
 
     .testimonial-card h4 {
-        font-size: 1.3rem;
+        font-size: 1.25rem;
     }
 
     .testimonial-card p {
-        font-size: 0.95rem;
+        font-size: 1rem;
     }
 
     .footer-logo {
@@ -532,11 +637,32 @@ body {
     }
 
     .footer-nav {
-        gap: 1rem;
+        grid-template-columns: 1fr;
     }
 
     .footer-nav a {
-        font-size: 0.9rem;
+        font-size: 0.875rem;
+    }
+
+    .features {
+        padding: 2rem 0.5rem;
+    }
+
+    .feature-image {
+        max-width: 300px;
+    }
+
+    .feature-item {
+        max-width: 300px;
+    }
+
+    .feature-item h4 {
+        font-size: 1.25rem;
+    }
+
+    .feature-item p {
+        font-size: 0.875rem;
+        max-width: 300px;
     }
 }
 

@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="auth.css">
     <link rel="stylesheet" href="styles.css">
     <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <!-- Italiana Font -->
     <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
     <!-- TT Commons Pro is a premium font, using a similar alternative for demo -->
@@ -207,7 +207,7 @@
                     <input type="email" placeholder="Enter your email">
                     <button type="submit">Subscribe</button>
                 </form>
-                <p>By subscribing you agree to with our <a href="#privacy">Privacy Policy</a></p>
+                <p>By subscribing you agree to with our <a href="terms.html">Privacy Policy</a></p>
             </div>
         </div>
         <div class="footer-bottom">
@@ -219,7 +219,10 @@
             </div>
         </div>
     </footer>
-    <script src="firebase-config.js"></script>
-    <script src="auth.js"></script>
+    <!-- Loader -->
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+    <script src="auth-state.js"></script>
 </body>
 </html> 
