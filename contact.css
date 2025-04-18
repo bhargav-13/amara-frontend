@@ -1,27 +1,19 @@
 /* Contact Page Styles */
 .contact-content {
     background: var(--white);
-    padding: 120px 0 60px;
+    padding: 60px 0;
     min-height: calc(100vh - 87px);
     position: relative;
 }
 
-.contact-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
+.page-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    padding: 0 1rem;
 }
 
-/* Contact Info Section */
-.contact-info {
-    padding-right: 2rem;
-}
-
-.contact-info h1 {
+.page-header h1 {
     font-family: var(--heading-font);
     font-size: 3.5rem;
     color: var(--deep-slate-gray);
@@ -31,14 +23,30 @@
 .contact-subtitle {
     font-size: 1.2rem;
     color: var(--deep-slate-gray);
-    margin-bottom: 3rem;
     opacity: 0.8;
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: stretch;
+}
+
+/* Contact Info Section */
+.contact-info, .contact-form-section {
+    display: flex;
+    flex-direction: column;
 }
 
 .info-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: 1fr;
     gap: 2rem;
+    height: 100%;
 }
 
 .info-card {
@@ -76,6 +84,7 @@
     background: var(--blush-rose-light);
     padding: 3rem;
     border-radius: 20px;
+    height: 100%;
 }
 
 .form-container h2 {
@@ -148,47 +157,186 @@
     background: #2a3640;
 }
 
+/* WhatsApp Popup */
+.whatsapp-popup {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+}
+
+.whatsapp-popup.active {
+    display: flex;
+}
+
+.popup-content {
+    background: white;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.popup-header {
+    background: #25D366;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popup-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+.popup-body {
+    padding: 1.5rem;
+}
+
+.popup-body p {
+    margin-bottom: 1rem;
+    color: var(--deep-slate-gray);
+}
+
+#whatsapp-message {
+    width: 100%;
+    min-height: 100px;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    resize: vertical;
+}
+
+.send-btn {
+    background: #25D366;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.send-btn:hover {
+    background: #1ea952;
+}
+
 /* WhatsApp Sticky Button */
 .whatsapp-sticky {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
+    bottom: 2.5rem;
+    right: 2.5rem;
     background: #25D366;
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 2rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-size: 2.5rem;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
     transition: all 0.3s ease;
     z-index: 1000;
+    text-decoration: none;
 }
 
 .whatsapp-sticky:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+    background: #1ea952;
+}
+
+.whatsapp-sticky::before {
+    content: '';
+    position: absolute;
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    background: rgba(37, 211, 102, 0.2);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    70% {
+        transform: scale(1.1);
+        opacity: 0.2;
+    }
+    100% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
 }
 
 .whatsapp-sticky .tooltip {
     position: absolute;
-    right: 70px;
+    right: 85px;
     background: #333;
     color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    font-size: 0.875rem;
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    font-size: 1rem;
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.whatsapp-sticky .tooltip::after {
+    content: '';
+    position: absolute;
+    right: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-left: 8px solid #333;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
 }
 
 .whatsapp-sticky:hover .tooltip {
     opacity: 1;
     visibility: visible;
+    right: 90px;
 }
 
 /* Responsive Design */
@@ -198,17 +346,21 @@
         gap: 3rem;
     }
 
-    .contact-info {
-        padding-right: 0;
+    .page-header h1 {
+        font-size: 3rem;
     }
 }
 
 @media (max-width: 768px) {
     .contact-content {
-        padding: 100px 0 40px;
+        padding: 40px 0;
     }
 
-    .contact-info h1 {
+    .page-header {
+        margin-bottom: 2rem;
+    }
+
+    .page-header h1 {
         font-size: 2.5rem;
     }
 
@@ -220,8 +372,17 @@
         font-size: 2rem;
     }
 
-    .info-cards {
-        grid-template-columns: 1fr;
+    .whatsapp-sticky {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+        bottom: 2rem;
+        right: 2rem;
+    }
+
+    .whatsapp-sticky::before {
+        width: 75px;
+        height: 75px;
     }
 }
 
@@ -230,7 +391,7 @@
         padding: 0 1rem;
     }
 
-    .contact-info h1 {
+    .page-header h1 {
         font-size: 2rem;
     }
 
@@ -242,11 +403,24 @@
         padding: 1.5rem;
     }
 
+    .popup-content {
+        width: 95%;
+    }
+
     .whatsapp-sticky {
-        width: 50px;
-        height: 50px;
-        font-size: 1.5rem;
+        width: 55px;
+        height: 55px;
+        font-size: 1.8rem;
         bottom: 1.5rem;
         right: 1.5rem;
+    }
+
+    .whatsapp-sticky::before {
+        width: 70px;
+        height: 70px;
+    }
+
+    .whatsapp-sticky .tooltip {
+        display: none;
     }
 } 

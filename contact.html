@@ -36,11 +36,12 @@
     </header>
 
     <main class="contact-content">
+        <div class="page-header">
+            <h1>Get in Touch</h1>
+            <p class="contact-subtitle">We'd love to hear from you. Our team is always here to help!</p>
+        </div>
         <div class="contact-container">
             <div class="contact-info">
-                <h1>Get in Touch</h1>
-                <p class="contact-subtitle">We'd love to hear from you. Our team is always here to help!</p>
-                
                 <div class="info-cards">
                     <div class="info-card">
                         <i class="fas fa-map-marker-alt"></i>
@@ -50,7 +51,7 @@
                     <div class="info-card">
                         <i class="fas fa-phone-alt"></i>
                         <h3>Call Us</h3>
-                        <p>+1 (555) 123-4567<br>Mon-Fri, 9am-6pm EST</p>
+                        <p>+919898013978<br>Mon-Fri, 9am-6pm EST</p>
                     </div>
                     <div class="info-card">
                         <i class="fas fa-envelope"></i>
@@ -92,11 +93,26 @@
         </div>
 
         <!-- WhatsApp Sticky Button -->
-        <a href="https://wa.me/1234567890" class="whatsapp-sticky" target="_blank">
+        <a href="https://wa.me/919898013978" class="whatsapp-sticky" target="_blank" onclick="event.preventDefault(); openWhatsApp();">
             <i class="fab fa-whatsapp"></i>
             <span class="tooltip">Chat with us!</span>
         </a>
     </main>
+
+    <!-- Add WhatsApp popup -->
+    <div id="whatsapp-popup" class="whatsapp-popup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h3>Start a Conversation</h3>
+                <button onclick="closeWhatsApp()" class="close-btn">&times;</button>
+            </div>
+            <div class="popup-body">
+                <p>Hello! How can we help you today?</p>
+                <textarea id="whatsapp-message" placeholder="Type your message..."></textarea>
+                <button onclick="sendWhatsApp()" class="send-btn">Start Chat</button>
+            </div>
+        </div>
+    </div>
 
     <footer class="footer">
         <div class="footer-background">AMARA</div>
@@ -133,5 +149,22 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="auth-state.js"></script>
+    <script>
+        function openWhatsApp() {
+            document.getElementById('whatsapp-popup').classList.add('active');
+        }
+
+        function closeWhatsApp() {
+            document.getElementById('whatsapp-popup').classList.remove('active');
+        }
+
+        function sendWhatsApp() {
+            const message = document.getElementById('whatsapp-message').value;
+            const phoneNumber = '919898013978';
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            closeWhatsApp();
+        }
+    </script>
 </body>
 </html> 
