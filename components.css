@@ -31,10 +31,14 @@
 }
 
 .logo {
-    font-family: 'Italiana', serif;
-    font-size: 2.5rem;
-    color: var(--deep-slate-gray);
     text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 45px;
+    width: auto;
 }
 
 .nav-links {
@@ -188,12 +192,14 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-family: 'Italiana', serif;
-    font-size: 20rem;
-    color: rgba(255, 255, 255, 0.03);
     pointer-events: none;
-    white-space: nowrap;
     z-index: 2;
+}
+
+.footer-background img {
+    height: 200px;
+    width: auto;
+    opacity: 0.5;
 }
 
 .footer-bottom {
@@ -265,8 +271,8 @@
         gap: 1rem;
     }
 
-    .logo {
-        font-size: 2rem;
+    .logo img {
+        height: 35px;
     }
 
     .nav-links {
@@ -306,8 +312,8 @@
         width: 100%;
     }
 
-    .footer-background {
-        font-size: 10rem;
+    .footer-background img {
+        height: 300px;
     }
 }
 
@@ -316,8 +322,8 @@
         padding: 0.5rem;
     }
 
-    .logo {
-        font-size: 1.5rem;
+    .logo img {
+        height: 30px;
     }
 
     .auth-buttons {
@@ -338,8 +344,8 @@
         gap: 0.5rem;
     }
 
-    .footer-background {
-        font-size: 8rem;
+    .footer-background img {
+        height: 200px;
     }
 }
 

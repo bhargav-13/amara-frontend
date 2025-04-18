@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Organic - AMARA</title>
+    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="components.css">
+    <link rel="stylesheet" href="organic.css">
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <img src="assets/logo-dark.png" alt="AMARA">
+                </a>
+            </div>
+            <div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="policy.html">Policy</a></li>
+                    <li><a href="#pricing">Review</a></li>
+                    <li><a href="organic.html" class="active">Why Organic</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <div class="auth-buttons">
+                    <a href="login.html" class="login-btn">Login</a>
+                    <a href="register.html" class="signup-btn">Sign up</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Organic Header -->
+        <section class="organic-header">
+            <h1>Why Choose Organic?</h1>
+            <p>Discover the benefits of organic period products for your health and the environment.</p>
+        </section>
+
+        <!-- Product Introduction Section -->
+        <section class="organic-section">
+            <div class="content-wrapper">
+                <div class="image-content">
+                    <img src="assets/organic.png" alt="EVOLVE organic product packaging with cotton">
+                </div>
+                <div class="text-content">
+                    <h2>What You Put In Your Body Matters</h2>
+                    <p>The average woman uses over 11,000 tampons or pads in her lifetime. These products come in direct contact with one of the most sensitive and absorbent parts of your body.</p>
+                    
+                    <p>Conventional sanitary products often contain synthetic materials, chemical additives, artificial fragrances, and traces of pesticides & substances you wouldn't want absorbed into your bloodstream.</p>
+                    
+                    <p>Amara's organic cotton products are free from these harmful substances, providing a safer, more comfortable period experience while reducing your exposure to potentially harmful chemicals.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Section -->
+        <section class="comparison-section">
+            <h2>Organic vs. Conventional: The Comparison</h2>
+            <div class="comparison-table">
+                <div class="table-row header">
+                 <div class="column" style="font-weight: bold;">How To Use</div>
+                    <div class="column highlight" style="font-weight: bold;">How To Use</div>
+                    <div class="column" style="font-weight: bold;">How To Use</div>
+                </div>
+                <div class="table-row">
+                    <div class="column">Materials</div>
+                    <div class="column highlight">100% Organic Cotton</div>
+                    <div class="column">Synthetic Fibers, Plastics, Rayon</div>
+                </div>
+                <div class="table-row">
+                    <div class="column">Chemical Processing</div>
+                    <div class="column highlight">No Chlorine, No Harsh Chemicals</div>
+                    <div class="column">Chemical Additives</div>
+                </div>
+                <div class="table-row">
+                    <div class="column">Fragrances</div>
+                    <div class="column highlight">None</div>
+                    <div class="column">Artificial Fragrances</div>
+                </div>
+                <div class="table-row">
+                    <div class="column">Breathability</div>
+                    <div class="column highlight">Highly Breathable</div>
+                    <div class="column">Limited Breathability</div>
+                </div>
+                <div class="table-row">
+                    <div class="column">Biodegradability</div>
+                    <div class="column highlight">Biodegradable</div>
+                    <div class="column">50+ Years to Decompose</div>
+                </div>
+                <div class="table-row">
+                    <div class="column">Environmental Impact</div>
+                    <div class="column highlight">Low Impact</div>
+                    <div class="column">High Impact</div>
+                </div>
+                <div class="table-row">
+                    <div class="column">Skin Sensitivity</div>
+                    <div class="column highlight">Hypoallergenic, Reduced Irritation</div>
+                    <div class="column">Common Irritations & Reactions</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Health Benefits Section -->
+        <section class="benefits-section">
+            <h2>Health Benefits of Switching to Organic</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-header">
+                        <img src="assets/right.svg" alt="Checkmark" class="check-icon">
+                        <h3>Reduced Irritation and Allergic Reactions</h3>
+                    </div>
+                    <p>Without synthetic materials, fragrances, and chemicals, organic cotton products significantly reduce the risk of skin irritation, rashes, and allergic reactions.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-header">
+                        <img src="assets/right.svg" alt="Checkmark" class="check-icon">
+                        <h3>Better Breathability</h3>
+                    </div>
+                    <p>Organic cotton allows air to circulate, reducing moisture build up and creating an environment less conducive to infections and discomfort.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-header">
+                        <img src="assets/right.svg" alt="Checkmark" class="check-icon">
+                        <h3>No Exposure to Harmful Chemicals</h3>
+                    </div>
+                    <p>Conventional products can contain traces of dioxins, pesticides, and other chemicals that may disrupt hormones and pose health risks with long-term exposure.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-header">
+                        <img src="assets/right.svg" alt="Checkmark" class="check-icon">
+                        <h3>Reduced Risk of TSS</h3>
+                    </div>
+                    <p>Some studies suggest that organic cotton products may carry a lower risk of Toxic Shock Syndrome compared to highly absorbent synthetic materials.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Environmental Impact Section -->
+        <section class="environmental-section">
+            <h2>Environmental Impact</h2>
+            <div class="environmental-content">
+                <div class="image-side">
+                    <img src="assets/enviroment.png" alt="Environmental impact illustration">
+                </div>
+                <div class="content-side">
+                    <div class="impact-group">
+                        <h3>The Problem with Conventional Products</h3>
+                        <ul>
+                            <li>The average woman uses 11,000+ disposable period products in her lifetime.</li>
+                            <li>Conventional pads can contain up to 90% plastic and take 500-800 years to decompose.</li>
+                            <li>Conventional cotton production uses 16% of the world's insecticides and 7% of pesticides.</li>
+                            <li>The manufacturing process for conventional products often involves chlorine bleaching, which creates harmful dioxins.</li>
+                        </ul>
+                    </div>
+
+                    <div class="impact-group">
+                        <h3>How Amara Makes a Difference</h3>
+                        <ul>
+                            <li>Our products are made from biodegradable materials that break down naturally.</li>
+                            <li>Organic cotton farming uses 91% less water and 62% less energy than conventional cotton.</li>
+                            <li>Organic cotton farming uses 91% less water and 62% less energy than conventional cotton.</li>
+                            <li>We use oxygen whitening instead of chlorine bleach, eliminating dioxin production.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-background">
+            <img src="assets/logo-light.png" alt="AMARA">
+        </div>
+        <div class="footer-content">
+            <div class="footer-left">
+                <a href="#" class="footer-logo">AMARA</a>
+                <nav class="footer-nav">
+                    <a href="#home">Home</a>
+                    <a href="#shop">Shop</a>
+                    <a href="#about">About</a>
+                    <a href="#blog">Blog</a>
+                    <a href="#contact">Contact</a>
+                    <a href="policy.html">Policy</a>
+                    <a href="terms.html">Condition</a>
+                </nav>
+            </div>
+            <div class="footer-subscribe">
+                <form class="footer-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+                <p>By subscribing you agree to with our <a href="terms.html">Privacy Policy</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-copyright">©2024 Aamara All rights reserved</div>
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+    <!-- Loader -->
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+    <script src="auth-state.js"></script>
+</body>
+</html> 

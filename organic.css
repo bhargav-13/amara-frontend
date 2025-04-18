@@ -1,0 +1,494 @@
+/* Main Content */
+.main-content {
+    min-height: calc(100vh - 87px - 400px); /* viewport height minus header and footer heights */
+    margin-top: 87px; /* header height */
+    background-color: var(--white);
+}
+
+body {
+    background-color: var(--white);
+}
+
+/* Organic Header */
+.organic-header {
+    background-color: var(--blush-rose);
+    padding: 80px 20px 40px;
+    text-align: center;
+    width: 100%;
+}
+
+.organic-header h1 {
+    font-family: 'Italiana', serif;
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    font-weight: normal;
+    color: var(--deep-slate-gray);
+    letter-spacing: 0.5px;
+}
+
+.organic-header p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    color: var(--white);
+    opacity: 0.9;
+}
+
+/* Organic Sections */
+.organic-section {
+    padding: 5rem 2rem;
+}
+
+.organic-section.alt-bg {
+    background-color: #f9f9f9;
+}
+
+.content-wrapper {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+}
+
+.content-wrapper.reverse {
+    flex-direction: row-reverse;
+}
+
+.text-content {
+    flex: 1;
+}
+
+.text-content h2 {
+    font-family: 'Italiana', serif;
+    font-size: 2.5rem;
+    color: var(--deep-slate-gray);
+    margin-bottom: 2rem;
+    font-weight: normal;
+    line-height: 1.2;
+}
+
+.text-content p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--deep-slate-gray);
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.image-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* Comparison Section */
+.comparison-section {
+    padding: 5rem 2rem;
+    text-align: center;
+}
+
+.comparison-section h2 {
+    font-family: 'Italiana', serif;
+    font-size: 2.8rem;
+    color: var(--deep-slate-gray);
+    margin-bottom: 3rem;
+    font-weight: normal;
+}
+
+.comparison-table {
+    max-width: 1300px;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.table-row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.table-row:last-child {
+    border-bottom: none;
+}
+
+.column {
+    flex: 1;
+    padding: 1.5rem 1rem;
+    font-size: 1.1rem;
+    color: var(--deep-slate-gray);
+    text-align: center;
+}
+
+.column.highlight {
+    background-color: var(--blush-rose-light);
+}
+
+/* Health Benefits Section */
+.benefits-section {
+    padding: 5rem 2rem;
+    text-align: center;
+    background-color: var(--white);
+}
+
+.benefits-section h2 {
+    font-family: 'Italiana', serif;
+    font-size: 2.8rem;
+    color: var(--deep-slate-gray);
+    margin-bottom: 4rem;
+    font-weight: normal;
+}
+
+.benefits-grid {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    padding: 0 1rem;
+}
+
+.benefit-item {
+    text-align: left;
+    padding: 1rem;
+}
+
+.benefit-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.check-icon {
+    width: 24px;
+    height: 24px;
+    margin-top: 0.5rem;
+}
+
+.benefit-header h3 {
+    font-family: 'Italiana', serif;
+    font-size: 1.8rem;
+    color: var(--deep-slate-gray);
+    font-weight: normal;
+    line-height: 1.3;
+    margin: 0;
+}
+
+.benefit-item p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--deep-slate-gray);
+    opacity: 0.9;
+    margin: 0;
+    padding-left: calc(24px + 1rem);
+}
+
+/* Environmental Impact Section */
+.environmental-section {
+    padding: 5rem 2rem;
+    text-align: center;
+    border-top: 1px solid #E0E0E0;
+}
+
+.environmental-section h2 {
+    font-family: 'Italiana', serif;
+    font-size: 2.8rem;
+    color: var(--deep-slate-gray);
+    margin-bottom: 4rem;
+    font-weight: normal;
+}
+
+.environmental-content {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    gap: 4rem;
+    align-items: flex-start;
+}
+
+.image-side {
+    flex: 1;
+}
+
+.image-side img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.content-side {
+    flex: 1;
+    text-align: left;
+}
+
+.impact-group {
+    margin-bottom: 3rem;
+}
+
+.impact-group:last-child {
+    margin-bottom: 0;
+}
+
+.impact-group h3 {
+    font-family: 'Italiana', serif;
+    font-size: 1.8rem;
+    color: var(--deep-slate-gray);
+    margin-bottom: 1.5rem;
+    font-weight: normal;
+}
+
+.impact-group ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.impact-group li {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--deep-slate-gray);
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.impact-group li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--deep-slate-gray);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 968px) {
+    .content-wrapper {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .content-wrapper.reverse {
+        flex-direction: column;
+    }
+
+    .text-content h2 {
+        font-size: 2rem;
+    }
+
+    .organic-section {
+        padding: 3rem 1.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .text-content h2 {
+        font-size: 1.75rem;
+    }
+
+    .text-content p,
+    .benefits-list li {
+        font-size: 1rem;
+    }
+
+    .organic-section {
+        padding: 2rem 1rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .content-wrapper {
+        max-width: 900px;
+        gap: 30px;
+    }
+
+    .text-content h2 {
+        font-size: 2.2rem;
+    }
+
+    .text-content p,
+    .text-content li {
+        font-size: 1rem;
+    }
+
+    .image-content {
+        height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .organic-header {
+        padding: 100px 20px 40px;
+    }
+
+    .organic-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .organic-header p {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
+
+    .organic-section {
+        padding: 40px 20px;
+    }
+
+    .content-wrapper {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+        gap: 30px;
+    }
+
+    .text-content {
+        padding: 0;
+    }
+
+    .text-content h2 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    .image-content {
+        width: 100%;
+        height: 300px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .organic-header {
+        padding: 80px 15px 30px;
+    }
+
+    .organic-header h1 {
+        font-size: 2rem;
+    }
+
+    .organic-header p {
+        font-size: 0.9rem;
+    }
+
+    .organic-section {
+        padding: 30px 15px;
+    }
+
+    .text-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .text-content p,
+    .text-content li {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .image-content {
+        height: 250px;
+    }
+}
+
+/* Responsive Design for Comparison Table */
+@media screen and (max-width: 768px) {
+    .comparison-section h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .column {
+        padding: 1rem 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .comparison-section {
+        padding: 3rem 1rem;
+    }
+
+    .comparison-section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .column {
+        padding: 0.8rem 0.3rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Responsive Design for Benefits Section */
+@media screen and (max-width: 968px) {
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .benefit-header h3 {
+        font-size: 1.6rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .benefits-section {
+        padding: 3rem 1rem;
+    }
+
+    .benefits-section h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .benefit-header h3 {
+        font-size: 1.4rem;
+    }
+
+    .benefit-item p {
+        font-size: 1rem;
+    }
+}
+
+/* Responsive Design for Environmental Section */
+@media screen and (max-width: 968px) {
+    .environmental-content {
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .image-side {
+        order: -1;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .impact-group h3 {
+        font-size: 1.6rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .environmental-section {
+        padding: 3rem 1rem;
+    }
+
+    .environmental-section h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .impact-group h3 {
+        font-size: 1.4rem;
+    }
+
+    .impact-group li {
+        font-size: 1rem;
+    }
+} 
