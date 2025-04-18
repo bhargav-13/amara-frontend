@@ -908,14 +908,6 @@ body {
     justify-content: space-between;
 }
 
-.testimonial-card:nth-child(2) {
-    transform: scale(1.2);
-    opacity: 1;
-    width: 450px;
-    height: 350px;
-    padding: 4rem;
-    box-shadow: 0 8px 30px rgba(54, 69, 79, 0.15);
-}
 
 .testimonial-card:hover {
     transform: scale(1.2);
