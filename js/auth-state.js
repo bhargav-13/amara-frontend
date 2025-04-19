@@ -5,7 +5,7 @@ function updateAuthUI(user) {
 
     if (user) {
         // Get user data from Firestore
-        firebase.firestore().collection('users').doc(user.uid).get()
+        db.collection('users').doc(user.uid).get()
             .then((doc) => {
                 if (doc.exists) {
                     const userData = doc.data();
@@ -31,7 +31,7 @@ function updateAuthUI(user) {
 
 // Handle logout
 function handleLogout() {
-    firebase.auth().signOut()
+    auth.signOut()
         .then(() => {
             window.location.href = 'index.html';
         })
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Listen for auth state changes
-    firebase.auth().onAuthStateChanged((user) => {
+    auth.onAuthStateChanged((user) => {
         updateAuthUI(user);
     });
 }); 

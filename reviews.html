@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Amara</title>
+    <title>Reviews - AMARA</title>
+    <link rel="stylesheet" href="auth.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="components.css">
-    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="reviews.css">
     <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <header>
@@ -25,7 +26,7 @@
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="policy.html">Policy</a></li>
-                    <li><a href="#pricing">Review</a></li>
+                    <li><a href="reviews.html" class="active">Review</a></li>
                     <li><a href="organic.html">Why Organic</a></li>
                 </ul>
             </div>
@@ -38,75 +39,62 @@
         </nav>
     </header>
 
-    <main class="auth-container">
-        <div class="auth-card">
-            <h2>Create Account</h2>
-            <p class="auth-subtitle">Join Amara today</p>
-            
-            <form class="auth-form" id="registerForm" novalidate>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="firstName">First Name</label>
-                        <input type="text" id="firstName" name="firstName" required>
+    <div class="page-container">
+        <div class="content-wrapper">
+            <!-- Authentication message for non-logged-in users -->
+            <div id="auth-message" class="auth-message" style="display: none;">
+                <p>Please <a href="login.html">log in</a> to view and submit reviews.</p>
+            </div>
+
+            <!-- Content for authenticated users -->
+            <div id="authenticated-content" style="display: none;">
+                <h1>Come join us with the community to grow your content reach</h1>
+                
+                <!-- User Info -->
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <div class="letter-avatar" id="letterAvatar"></div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="lastName">Last Name</label>
-                        <input type="text" id="lastName" name="lastName" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <div class="phone-input-group">
-                        <input type="text" id="phoneCode" name="phoneCode" value="+91" class="phone-code" required>
-                        <input type="tel" id="phone" name="phone" placeholder="Phone number" required>
+                    <div class="user-details">
+                        <span class="user-name" id="userName"></span>
+                        <span class="user-subtitle">Posting publicly across Google</span>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
-                    <div class="password-requirements">
-                        <p>Password must contain:</p>
-                        <ul>
-                            <li data-requirement="length">At least 8 characters</li>
-                            <li data-requirement="uppercase">One uppercase letter</li>
-                            <li data-requirement="lowercase">One lowercase letter</li>
-                            <li data-requirement="number">One number</li>
-                            <li data-requirement="special">One special character</li>
-                        </ul>
+                <!-- Review Form -->
+                <form id="reviewForm" class="review-form">
+                    <textarea id="reviewText" placeholder="Enter Your Opinion" required></textarea>
+                    <div class="star-rating">
+                        <i class="far fa-star" data-rating="1"></i>
+                        <i class="far fa-star" data-rating="2"></i>
+                        <i class="far fa-star" data-rating="3"></i>
+                        <i class="far fa-star" data-rating="4"></i>
+                        <i class="far fa-star" data-rating="5"></i>
+                    </div>
+                    <button type="submit" class="submit-review-btn">Share your content</button>
+                </form>
+
+                <!-- Reviews List -->
+                <div class="reviews-list" id="reviewsList">
+                    <!-- Example review card structure -->
+                    <div class="review-card">
+                        <div class="reviewer-name">Gail Gardner</div>
+                        <div class="reviewer-title">Verified Customer</div>
+                        <div class="review-content">
+                            <p class="review-text">The quality of organic produce is exceptional. Their commitment to sustainable farming practices and delivering fresh, chemical-free products is commendable.</p>
+                        </div>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="confirmPassword">Confirm Password</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" required>
-                </div>
-
-                <div class="form-group terms-group">
-                    <label class="terms">
-                        <input type="checkbox" name="terms" id="terms" required>
-                        <span>I agree to the <a href="terms.html">Terms of Service</a> and <a href="terms.html">Privacy Policy</a></span>
-                    </label>
-                    <div class="terms-error" style="display: none;">
-                        You must agree to the terms and conditions
-                    </div>
-                </div>
-
-                <button type="submit" class="auth-btn">Create Account</button>
-            </form>
-
-            <p class="auth-switch">
-                Already have an account? <a href="login.html">Login</a>
-            </p>
+            </div>
         </div>
-    </main>
+    </div>
 
     <footer class="footer">
         <div class="footer-background">
@@ -148,12 +136,12 @@
         <div class="loader"></div>
     </div>
     
-    <!-- Firebase SDK -->
+    <!-- Firebase Scripts -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="firebase-config.js"></script>
     <script src="auth-state.js"></script>
-    <script src="auth.js"></script>
+    <script src="reviews.js"></script>
 </body>
 </html> 

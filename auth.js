@@ -1,6 +1,3 @@
-// Get Firebase auth instance
-const auth = firebase.auth();
-
 // DOM Elements
 const loginForm = document.getElementById('loginForm');
 const registerForm = document.getElementById('registerForm');
@@ -25,57 +22,130 @@ if (loginForm) {
         const password = document.getElementById('password').value;
 
         try {
-            await auth.signInWithEmailAndPassword(email, password);
+            const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
+            console.log('Login successful:', userCredential.user);
             window.location.href = 'index.html';
         } catch (error) {
             console.error('Login error:', error);
-            alert('Login failed: ' + error.message);
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.textContent = error.message;
+            loginForm.insertBefore(errorDiv, loginForm.firstChild);
         } finally {
             hideLoader();
         }
     });
 }
 
-// Handle register form
-if (registerForm) {
-    registerForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        showLoader();
+// Get form elements
+const passwordInput = document.getElementById('password');
+const passwordRequirements = document.querySelectorAll('.password-requirements li');
 
+// Password validation on input
+if (passwordInput) {
+    passwordInput.addEventListener('input', function() {
+        const password = this.value;
+        
+        // Update requirements UI
+        const requirements = {
+            length: password.length >= 8,
+            uppercase: /[A-Z]/.test(password),
+            lowercase: /[a-z]/.test(password),
+            number: /[0-9]/.test(password),
+            special: /[!@#$%^&*(),.?":{}|<>]/.test(password)
+        };
+
+        passwordRequirements.forEach(req => {
+            const requirement = req.getAttribute('data-requirement');
+            if (requirements[requirement]) {
+                req.classList.add('met');
+                req.classList.remove('unmet');
+            } else {
+                req.classList.add('unmet');
+                req.classList.remove('met');
+            }
+        });
+    });
+}
+
+// Handle registration
+if (registerForm) {
+    registerForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        console.log('Form submitted');
+
+        // Get form values
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
         const firstName = document.getElementById('firstName').value;
         const lastName = document.getElementById('lastName').value;
+        const phoneCode = document.getElementById('phoneCode').value;
+        const phone = document.getElementById('phone').value;
+        const terms = document.getElementById('terms');
+
+        // Show loader
+        const loader = document.querySelector('.loader-container');
+        if (loader) loader.style.display = 'flex';
 
         try {
-            const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+            console.log('Creating user...');
             
+            // Create user in Firebase Auth
+            const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+            console.log('User created:', userCredential);
+
             // Add user details to Firestore
             await firebase.firestore().collection('users').doc(userCredential.user.uid).set({
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                createdAt: new Date()
+                firstName,
+                lastName,
+                email,
+                phoneCode,
+                phone,
+                country: "IN",
+                createdAt: new Date().toISOString()
             });
+            console.log('User data saved to Firestore');
 
+            // Redirect to index page
             window.location.href = 'index.html';
         } catch (error) {
             console.error('Registration error:', error);
-            alert('Registration failed: ' + error.message);
-        } finally {
-            hideLoader();
+            
+            // Show error message
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.textContent = error.message;
+            registerForm.insertBefore(errorDiv, registerForm.firstChild);
+            
+            // Hide loader
+            if (loader) loader.style.display = 'none';
         }
     });
 }
 
+// Handle country selection and phone code
+document.addEventListener('DOMContentLoaded', function() {
+    const countrySelect = document.getElementById('country');
+    const phoneInput = document.getElementById('phone');
+    
+    if (countrySelect && phoneInput) {
+        countrySelect.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            const phoneCode = selectedOption.getAttribute('data-code');
+            phoneInput.placeholder = `${phoneCode} Phone number`;
+        });
+    }
+});
+
 // Update UI based on auth state
-auth.onAuthStateChanged((user) => {
+firebase.auth().onAuthStateChanged((user) => {
     const authButtons = document.querySelector('.auth-buttons');
     if (!authButtons) return;
 
     if (user) {
         // Get user data from Firestore to display full name
-        db.collection('users').doc(user.uid).get()
+        firebase.firestore().collection('users').doc(user.uid).get()
             .then((doc) => {
                 if (doc.exists) {
                     const userData = doc.data();
@@ -101,7 +171,7 @@ auth.onAuthStateChanged((user) => {
 
 // Handle logout
 function handleLogout() {
-    auth.signOut()
+    firebase.auth().signOut()
         .then(() => {
             window.location.href = 'index.html';
         })
@@ -110,9 +180,6 @@ function handleLogout() {
             alert('Logout failed: ' + error.message);
         });
 }
-
-// Get Firestore instance
-const db = firebase.firestore();
 
 // Show error message
 function showError(element, message) {
@@ -148,45 +215,32 @@ function hideError(element) {
     element.style.borderColor = '#ddd';
 }
 
-// Validate password
+// Password validation function
 function validatePassword(password) {
     const requirements = {
         length: password.length >= 8,
         uppercase: /[A-Z]/.test(password),
         lowercase: /[a-z]/.test(password),
         number: /[0-9]/.test(password),
-        special: /[!@#$%^&*]/.test(password)
-    };
-    return Object.values(requirements).every(Boolean);
-}
-
-// Update password requirements UI
-function updatePasswordRequirements(password) {
-    const requirements = {
-        length: password.length >= 8,
-        uppercase: /[A-Z]/.test(password),
-        lowercase: /[a-z]/.test(password),
-        number: /[0-9]/.test(password),
-        special: /[!@#$%^&*]/.test(password)
+        special: /[!@#$%^&*(),.?":{}|<>]/.test(password)
     };
 
-    Object.entries(requirements).forEach(([key, isValid]) => {
-        const requirementElement = document.querySelector(`[data-requirement="${key}"]`);
-        if (requirementElement) {
-            requirementElement.classList.toggle('valid', isValid);
+    // Update UI for each requirement
+    Object.keys(requirements).forEach(req => {
+        const element = document.querySelector(`[data-requirement="${req}"]`);
+        if (element) {
+            if (requirements[req]) {
+                element.classList.add('met');
+                element.classList.remove('unmet');
+            } else {
+                element.classList.add('unmet');
+                element.classList.remove('met');
+            }
         }
     });
-}
 
-// Add password input event listener
-document.addEventListener('DOMContentLoaded', function() {
-    const passwordInput = document.getElementById('password');
-    if (passwordInput) {
-        passwordInput.addEventListener('input', function() {
-            updatePasswordRequirements(this.value);
-        });
-    }
-});
+    return Object.values(requirements).every(Boolean);
+}
 
 // Handle country selection
 document.addEventListener('DOMContentLoaded', function() {
@@ -245,7 +299,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const passwordInputs = document.querySelectorAll('input[type="password"]');
     passwordInputs.forEach(input => {
         input.addEventListener('input', function() {
-            validatePassword(this);
+            validatePassword(this.value);
         });
     });
 
@@ -294,7 +348,7 @@ async function handleLogin(form) {
     
     try {
         console.log('Attempting login with:', { email });
-        const userCredential = await auth.signInWithEmailAndPassword(email, password);
+        const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
         console.log('Login successful:', userCredential.user);
         
         localStorage.setItem('user', JSON.stringify({
@@ -315,7 +369,7 @@ async function handleLogin(form) {
 
 async function handleSocialLogin(provider) {
     try {
-        const result = await auth.signInWithPopup(provider);
+        const result = await firebase.auth().signInWithPopup(provider);
         const user = result.user;
         
         // Save user data to Firestore if it's a new user

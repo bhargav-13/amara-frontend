@@ -1,0 +1,250 @@
+.page-container {
+    background-color: #FFFFFF;
+    min-height: 100vh;
+    padding: 80px 0;
+}
+
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+#authenticated-content h1 {
+    font-family: 'Italiana', serif;
+    font-size: 3.5rem;
+    line-height: 72px;
+    color: #1D1D20;
+    margin-bottom: 48px;
+    text-align: left;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+}
+
+.letter-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FF9A9E 0%, #FAD0C4 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #1D1D20;
+    font-weight: 500;
+}
+
+.user-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    line-height: 18px;
+    color: #6B6B6B;
+}
+
+.review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 48px;
+}
+
+.review-form textarea {
+    width: 100%;
+    height: 120px;
+    padding: 16px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    resize: none;
+}
+
+.review-form textarea::placeholder {
+    color: #9CA3AF;
+}
+
+.star-rating {
+    display: flex;
+    gap: 8px;
+    color: #FFC107;
+    font-size: 24px;
+}
+
+.submit-review-btn {
+    width: 210px;
+    height: 52px;
+    background: #36454F;
+    border-radius: 30px;
+    color: #FFFFFF;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-review-btn:hover {
+    background: #2C3840;
+}
+
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    width: 100%;
+    max-width: 1326px;
+    margin: 0 auto;
+}
+
+.review-card {
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    background: #E3C1B6;
+    box-shadow: 2.47397px 19.7917px 39.5835px rgba(0, 0, 0, 0.12);
+    border-radius: 12.3698px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    align-self: stretch;
+}
+
+.reviewer-name {
+    font-family: 'FONTSPRING DEMO - TT Commons Pro', 'Poppins', sans-serif;
+    font-size: 40px;
+    line-height: 50px;
+    text-align: center;
+    letter-spacing: 0.02em;
+    color: #36454F;
+    margin-bottom: 5px;
+}
+
+.reviewer-title {
+    font-family: 'FONTSPRING DEMO - TT Commons Pro', 'Poppins', sans-serif;
+    font-size: 20px;
+    line-height: 25px;
+    text-align: center;
+    letter-spacing: 0.02em;
+    color: #FFFFFF;
+    margin-bottom: 39.58px;
+}
+
+.review-content {
+    width: 100%;
+    max-width: 1185px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.review-text {
+    font-family: 'FONTSPRING DEMO - TT Commons Pro', 'Poppins', sans-serif;
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.review-stars {
+    display: flex;
+    gap: 2.47px;
+    margin-top: 39.58px;
+}
+
+.review-stars i {
+    font-size: 29.69px;
+    color: #36454F;
+}
+
+@media (max-width: 1400px) {
+    .reviews-list {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .reviews-list {
+        gap: 40px;
+    }
+
+    .review-card {
+        padding: 24px;
+        min-height: 160px;
+    }
+
+    .reviewer-name {
+        font-size: 28px;
+        line-height: 36px;
+    }
+
+    .reviewer-title {
+        font-size: 16px;
+        line-height: 20px;
+        margin-bottom: 24px;
+    }
+
+    .review-text {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    .review-stars i {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .review-card {
+        padding: 20px;
+        min-height: 140px;
+    }
+
+    .reviewer-name {
+        font-size: 24px;
+        line-height: 32px;
+    }
+
+    .reviewer-title {
+        font-size: 14px;
+        line-height: 18px;
+        margin-bottom: 16px;
+    }
+
+    .review-text {
+        font-size: 16px;
+        line-height: 22px;
+    }
+
+    .review-stars i {
+        font-size: 20px;
+    }
+} 

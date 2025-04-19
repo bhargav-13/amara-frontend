@@ -36,13 +36,38 @@
 .story-content {
     display: flex;
     gap: 4rem;
-    align-items: flex-start;
     margin-bottom: 4rem;
+    align-items: flex-start;
 }
 
 .story-image {
     width: 45%;
-    height: auto;
+    border-radius: 8px;
+}
+
+.content-text {
+    width: 55%;
+}
+
+.content-text h2 {
+    font-family: 'Italiana', serif;
+    font-size: 2.5rem;
+    color: #36454F;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+.content-text .author-byline {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+.content-text p {
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
 }
 
 .story-quote {
@@ -98,23 +123,21 @@
 
 /* Values Section */
 .values-section {
-    text-align: left;
-    padding: 4rem 0;
+    margin-bottom: 4rem;
 }
 
 .values-section h2 {
-    padding-top: 2rem;
     font-family: 'Italiana', serif;
-    font-size: 2rem;
-    color: var(--deep-slate-gray);
-    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    color: #36454F;
+    margin-bottom: 2rem;
 }
 
 .values-section p {
-    margin: 0 0 2rem;
-    font-size: 1.5rem;
+    color: #666;
     line-height: 1.8;
-    color: var(--deep-slate-gray);
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
 }
 
 .learn-more-btn {
@@ -152,6 +175,23 @@
 }
 
 /* Responsive styles */
+@media (max-width: 768px) {
+    .story-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .story-image,
+    .content-text {
+        width: 100%;
+    }
+
+    .content-text h2,
+    .values-section h2 {
+        font-size: 2rem;
+    }
+}
+
 @media (max-width: 480px) {
     .blog-container {
         padding: 1rem;
