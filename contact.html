@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+
 <body>
     <header>
         <nav class="navbar">
@@ -47,20 +49,22 @@
         <div class="contact-container">
             <div class="contact-info">
                 <div class="info-cards">
-                    <div class="info-card">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <h3>Visit Us</h3>
-                        <p>123 Business Street<br>New York, NY 10001</p>
-                    </div>
+                    <a>
+                        <div class="info-card">
+                            <i class="fas fa-comments"></i>
+                            <h3>Chat With Us</h3>
+                            <p>Live support available on whatsapp<br>Mon–Fri, 10am–6pm IST</p>
+                        </div>
+                    </a>
                     <div class="info-card">
                         <i class="fas fa-phone-alt"></i>
                         <h3>Call Us</h3>
-                        <p>+919898013978<br>Mon-Fri, 9am-6pm EST</p>
+                        <p>+91 99991 22290<br>Mon–Fri, 9am–6pm IST</p>
                     </div>
                     <div class="info-card">
                         <i class="fas fa-envelope"></i>
                         <h3>Email Us</h3>
-                        <p>support@amara.com<br>sales@amara.com</p>
+                        <p>info@amaraorganic.com</p>
                     </div>
                 </div>
             </div>
@@ -68,17 +72,17 @@
             <div class="contact-form-section">
                 <div class="form-container">
                     <h2>Send us a Message</h2>
-                    <form class="contact-form">
+                    <form class="contact-form" action="https://formspree.io/f/xkgjdklp" method="POST">
                         <div class="form-group">
-                            <input type="text" id="name" required>
+                            <input type="text" id="name" name="name" required>
                             <label for="name">Your Name</label>
                         </div>
                         <div class="form-group">
-                            <input type="email" id="email" required>
+                            <input type="email" id="email" name="email" required>
                             <label for="email">Your Email</label>
                         </div>
                         <div class="form-group">
-                            <select id="subject" required>
+                            <select id="subject" name="subject" required>
                                 <option value="" disabled selected>Select Subject</option>
                                 <option value="general">General Inquiry</option>
                                 <option value="support">Product Support</option>
@@ -87,17 +91,19 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <textarea id="message" rows="5" required></textarea>
+                            <textarea id="message" name="message" rows="5" required></textarea>
                             <label for="message">Your Message</label>
                         </div>
                         <button type="submit" class="submit-btn">Send Message</button>
+                        
                     </form>
                 </div>
             </div>
         </div>
 
         <!-- WhatsApp Sticky Button -->
-        <a href="https://wa.me/919898013978" class="whatsapp-sticky" target="_blank" onclick="event.preventDefault(); openWhatsApp();">
+        <a href="https://wa.me/919898013978" class="whatsapp-sticky" target="_blank"
+            onclick="event.preventDefault(); openWhatsApp();">
             <i class="fab fa-whatsapp"></i>
             <span class="tooltip">Chat with us!</span>
         </a>
@@ -159,7 +165,7 @@
     <div class="loader-container">
         <div class="loader"></div>
     </div>
-    
+
     <!-- Firebase Scripts -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
@@ -184,4 +190,5 @@
         }
     </script>
 </body>
-</html> 
+
+</html>
