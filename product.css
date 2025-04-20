@@ -153,12 +153,12 @@
     margin-bottom: 2rem;
 }
 
-.nav-links {
+.p-nav-links {
     display: flex;
     gap: 2rem;
 }
 
-.nav-links a {
+.p-nav-links a {
     color: var(--deep-slate-gray);
     text-decoration: none;
     font-size: 1rem;
@@ -167,7 +167,7 @@
     position: relative;
 }
 
-.nav-links a.active::after {
+.p-nav-links a.active::after {
     content: '';
     position: absolute;
     bottom: -1px;
