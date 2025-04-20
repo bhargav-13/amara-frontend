@@ -218,6 +218,7 @@ body {
 
 .image-side {
     flex: 1;
+    margin-top: 2%;
 }
 
 .image-side img {
