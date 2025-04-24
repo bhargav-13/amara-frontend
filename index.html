@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AMARA - Pure Organic Care</title>
-    <link rel="stylesheet" href="components.css">
     <link rel="stylesheet" href="auth.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="components.css">
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
@@ -26,23 +26,31 @@
                     <img src="assets/logo-dark.png" alt="AMARA">
                 </a>
             </div>
-            <div>
-                <ul class="nav-links">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="policy.html">Policy</a></li>
-                    <li><a href="product.html">Product</a></li>
-                    <li><a href="organic.html">Why Organic</a></li>
-                </ul>
+            
+            <div class="nav-center">
+                <div class="nav-links-container">
+                    <ul class="nav-links">
+                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="policy.html">Policy</a></li>
+                        <li><a href="product.html">Product</a></li>
+                        <li><a href="organic.html">Why Organic</a></li>
+                    </ul>
+                </div>
             </div>
             <div class="nav-right">
                 <div class="auth-buttons">
-                    <a href="login.html" class="login-btn">Login</a>
-                    <a href="register.html" class="signup-btn">Sign up</a>
+                    <!-- Auth buttons will be dynamically inserted here -->
                 </div>
             </div>
+            <button class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            
+            </button>
         </nav>
     </header>
 

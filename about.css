@@ -135,6 +135,14 @@ body {
 }
 
 @media (max-width: 768px) {
+    .about-header {
+        padding: 40px 20px;
+    }
+
+    .about-header h1 {
+        font-size: 2.2rem;
+    }
+
     .about-section {
         padding: 40px 20px;
     }
@@ -142,19 +150,33 @@ body {
     .content-wrapper {
         grid-template-columns: 1fr;
         max-width: 600px;
-        gap: 40px;
+        gap: 30px;
     }
 
-    /* Reset order for mobile */
+    /* Make all image sections come first */
+    .image-content {
+        order: 1;
+        width: 100%;
+        height: 300px;
+        margin: 0 auto;
+    }
+
+    /* Make all text sections come second */
+    .text-content {
+        order: 2;
+        padding: 0;
+        text-align: center;
+    }
+
+    /* Override any existing order styles */
     .about-section:nth-child(3) .content-wrapper .text-content,
-    .about-section:nth-child(5) .content-wrapper .text-content,
+    .about-section:nth-child(5) .content-wrapper .text-content {
+        order: 2;
+    }
+
     .about-section:nth-child(3) .content-wrapper .image-content,
     .about-section:nth-child(5) .content-wrapper .image-content {
-        order: unset;
-    }
-
-    .text-content {
-        padding: 0;
+        order: 1;
     }
 
     .text-content h2 {
@@ -165,22 +187,38 @@ body {
     .quote-mark {
         font-size: 4rem;
         margin-bottom: 15px;
+        text-align: center;
     }
 
-    .image-content {
-        width: 100%;
-        height: 300px;
-        margin: 0 auto;
+    .quote-text {
+        font-size: 1.1rem;
+        text-align: center;
+    }
+
+    .quote-author {
+        text-align: center;
     }
 }
 
 @media (max-width: 480px) {
+    .about-header {
+        padding: 30px 15px;
+    }
+
+    .about-header h1 {
+        font-size: 2rem;
+    }
+
     .about-section {
         padding: 30px 15px;
     }
 
     .content-wrapper {
-        gap: 30px;
+        gap: 20px;
+    }
+
+    .image-content {
+        height: 250px;
     }
 
     .text-content h2 {
@@ -198,18 +236,5 @@ body {
 
     .quote-author {
         font-size: 1.6rem;
-    }
-
-    .image-content {
-        height: 250px;
-    }
-
-    .about-header h1 {
-        font-size: 2.2rem;
-    }
-
-    .about-header p {
-        font-size: 0.9rem;
-        padding: 0 15px;
     }
 } 

@@ -1,56 +1,57 @@
-// Function to update auth UI based on user state
-function updateAuthUI(user) {
-    const authButtons = document.querySelector('.auth-buttons');
-    if (!authButtons) return;
-
-    if (user) {
-        // Get user data from Firestore
-        firebase.firestore().collection('users').doc(user.uid).get()
-            .then((doc) => {
-                if (doc.exists) {
-                    const userData = doc.data();
-                    const fullName = `${userData.firstName} ${userData.lastName}`;
-                    authButtons.innerHTML = `
-                        <div class="user-profile">
-                            <span class="user-name">${fullName}</span>
-                            <button class="logout-btn" onclick="handleLogout()">Logout</button>
-                        </div>
-                    `;
-                }
-            })
-            .catch((error) => {
-                console.error("Error getting user data:", error);
-            });
-    } else {
-        authButtons.innerHTML = `
-            <a href="login.html" class="login-btn">Login</a>
-            <a href="register.html" class="signup-btn">Sign up</a>
-        `;
-    }
-}
-
-// Handle logout
-function handleLogout() {
-    firebase.auth().signOut()
-        .then(() => {
-            window.location.href = 'index.html';
-        })
-        .catch((error) => {
-            console.error('Logout error:', error);
-            alert('Logout failed: ' + error.message);
-        });
-}
-
-// Initialize auth state listener
+// Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Set initial UI state to loading
-    const authButtons = document.querySelector('.auth-buttons');
-    if (authButtons) {
-        authButtons.innerHTML = '<div class="auth-loading">Loading...</div>';
+    // Initialize mobile menu functionality
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const navLinksContainer = document.querySelector('.nav-links-container');
+
+    if (hamburgerMenu && navLinksContainer) {
+        hamburgerMenu.addEventListener('click', () => {
+            hamburgerMenu.classList.toggle('active');
+            navLinksContainer.classList.toggle('active');
+        });
     }
 
-    // Listen for auth state changes
+    // Set initial UI state to loading
+    const desktopAuthButtons = document.querySelector('.nav-right .auth-buttons');
+    const mobileAuthButtons = document.querySelector('.nav-links-container .auth-buttons');
+    
+    if (desktopAuthButtons) {
+        desktopAuthButtons.innerHTML = '<div class="auth-loading">Loading...</div>';
+    }
+    if (mobileAuthButtons) {
+        mobileAuthButtons.innerHTML = '<div class="auth-loading">Loading...</div>';
+    }
+
+    // Initialize Firebase Auth listener
     firebase.auth().onAuthStateChanged((user) => {
-        updateAuthUI(user);
+        if (user) {
+            // User is signed in
+            const authButtonsHTML = `
+                <span class="user-name">${user.email}</span>
+                <a href="#" class="logout-btn" onclick="signOut()">Logout</a>
+            `;
+            
+            if (desktopAuthButtons) desktopAuthButtons.innerHTML = authButtonsHTML;
+            if (mobileAuthButtons) mobileAuthButtons.innerHTML = authButtonsHTML;
+        } else {
+            // User is signed out
+            const authButtonsHTML = `
+                <a href="login.html" class="login-btn">Login</a>
+                <a href="register.html" class="signup-btn">Sign up</a>
+            `;
+            
+            if (desktopAuthButtons) desktopAuthButtons.innerHTML = authButtonsHTML;
+            if (mobileAuthButtons) mobileAuthButtons.innerHTML = authButtonsHTML;
+        }
     });
-}); 
+});
+
+// Sign out function
+function signOut() {
+    firebase.auth().signOut().then(() => {
+        // Sign-out successful
+        window.location.href = 'index.html';
+    }).catch((error) => {
+        console.error('Sign out error:', error);
+    });
+} 
