@@ -394,18 +394,38 @@ body {
     }
 
     .hero {
-        padding: 5rem 1rem 2rem;
+        flex-direction: column;
+        text-align: center;
+        padding: 6rem 2rem 2rem;
+        gap: 2rem;
     }
 
     .hero-content {
-        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         max-width: 100%;
-        padding: 0 1rem;
+    }
+
+    .hero-content h1 {
+        margin-left: 0;
+        font-size: 3.5rem;
+    }
+
+    .hero-content p {
+        margin-left: 0;
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .hero-buttons {
+        margin-left: 0;
+        justify-content: center;
     }
 
     .hero-image {
         width: 100%;
-        max-width: 100%;
+        margin-top: 2rem;
     }
 
     .arch-container {
@@ -535,8 +555,7 @@ body {
     }
 
     .hero-content h1 {
-        font-size: 2.5rem;
-        margin-left: 0;
+        font-size: 2.8rem;
     }
 
     .hero-content p {
@@ -596,6 +615,17 @@ body {
     .feature-item p {
         font-size: 0.875rem;
         max-width: 300px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .hero-buttons a {
+        width: 100%;
+        text-align: center;
     }
 }
 
