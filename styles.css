@@ -1403,6 +1403,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .social-links {
@@ -1419,6 +1421,23 @@ body {
 
 .social-link:hover img {
     opacity: 1;
+}
+
+.footer-credit {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.9rem;
+}
+
+.footer-credit a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.35);
+}
+
+.footer-credit a:hover {
+    color: #ffffff;
+    border-bottom-color: transparent;
 }
 
 /* Add margin to main content to account for fixed header */
